@@ -19,62 +19,93 @@ Nello stesso package aggiungete una classe Main con metodo main nella quale test
 
 import java.util.Random;
 public class Product {
-    public int vat;
-    public String name, description;
-    public double price;
     private String productCode;
+    private int vat;
+    private String name;
+    private String description;
+    private double price;
 
-    Random random = new Random();
-    public Product(){
-        int code = random.nextInt(10000);
-        this.productCode = String.format("%06d", code); // Formatta con zeri a sinistra fino a 6 cifre
-    }
-    // COSTRUTTORE
-    public Product(int productCode, int vat, String name, String description, double price) {
-        int code = random.nextInt(10000);
+    // Random per generare il codice del prodotto
+    private final Random random = new Random();
+
+    // Costruttore che genera un codice random
+    public Product() {
+        int code = random.nextInt(1000000);
         this.productCode = String.format("%06d", code);
-        this.vat = vat;
+    }
+
+    // Costruttore con tutti i parametri
+    public Product(String name, String description, double price, int vat) {
+        int code = random.nextInt(1000000);
+        this.productCode = String.format("%06d", code);
         this.name = name;
         this.description = description;
         this.price = price;
+        this.vat = vat;
     }
-    //METODI
 
-    @Override
-    public String toString() {
-        return "Product " +
-                "{code='" + String.format("%6s" , productCode).replace(' ', '0') +
-                "', name='" + name +
-                "', description='" + description +
-                "', price='" + price +
-                "', vat='" + vat + "'}";
-    }
+    // Metodi getter e setter
 
     public String getProductCode() {
         return productCode;
-    }
-
-    public double getPrice() {
-        return price;
     }
 
     public int getVat() {
         return vat;
     }
 
+    public void setVat(int vat) {
+        this.vat = vat;
+    }
+
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
         return description;
     }
 
-    double getPriceVat(){
-        return price + (price*vat/100);
+    public void setDescription(String description) {
+        this.description = description;
     }
 
-    String getFullName(){
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // Metodo per ottenere il prezzo base
+    public double getBasePrice() {
+        return price;
+    }
+
+    // Metodo per ottenere il prezzo comprensivo di IVA
+    public double getPriceWithVat() {
+        return price + (price * vat / 100);
+    }
+
+    // Metodo per ottenere il nome esteso (codice-nome)
+    public String getFullName() {
         return productCode + "-" + name;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productCode='" + productCode + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", vat=" + vat +
+                '}';
+    }
+
 }
