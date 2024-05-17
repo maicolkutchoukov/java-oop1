@@ -11,10 +11,10 @@ public class Bank {
         conto1.setName(scanner.nextLine());
         String choice;
         do {
-            System.out.println("Che operazione vuoi fare? (p: Prelievo / d: Deposito / u: Uscire)");
+            System.out.print("Che operazione vuoi fare? (p: Prelievo / d: Deposito / u: Uscire)");
             choice = scanner.nextLine();
             if (Objects.equals(choice, "p")) {
-                System.out.println("Quanto vuoi prelevare? Digita 'u' per annullare.");
+                System.out.print("Quanto vuoi prelevare? Digita 'u' per annullare.");
                 if (scanner.hasNextDouble()) {
                     double amount = scanner.nextDouble();
                     scanner.nextLine();
@@ -28,7 +28,7 @@ public class Bank {
                     }
                 }
             } else if (Objects.equals(choice, "d")) {
-                System.out.println("Quanto vuoi depositare? Digita 'u' per annullare.");
+                System.out.print("Quanto vuoi depositare? Digita 'u' per annullare.");
                 if (scanner.hasNextDouble()) {
                     double amount = scanner.nextDouble();
                     scanner.nextLine();
@@ -46,9 +46,9 @@ public class Bank {
             } else {
                 System.out.println("ERRORE, digita il carattere giusto!");
             }
-            System.out.println(conto1.toString());
+            System.out.println("Saldo: " + conto1.getBalance() + "$");
         } while (!Objects.equals(choice, "u"));
-
+        System.out.println(conto1.toString());
         scanner.close();
     }
 }
